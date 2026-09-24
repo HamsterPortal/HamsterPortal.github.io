@@ -75,6 +75,8 @@
     border: 2px solid gold;
     padding: 4px 10px;
     border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 6px;
   }
   nav a:hover { background: gold; color: #7a0038; }
 
@@ -261,6 +263,65 @@
     font-size: 24px;
   }
 
+  /* ===== ABOUT THE OWNER ===== */
+  .owner-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    background: linear-gradient(160deg, #fff0f8, #ffe9c9);
+    border: 5px dashed #b3006b;
+    border-radius: 20px;
+    padding: 30px;
+  }
+  .owner-card img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid gold;
+    box-shadow: 0 0 30px rgba(179,0,107,0.7), 0 0 0 6px #b3006b;
+    transform: rotate(-4deg);
+    flex-shrink: 0;
+    margin: 0 auto;
+    background: #ffd23f;
+    display: block;
+  }
+  .owner-info { flex: 1 1 340px; min-width: 0; }
+  .owner-info h3 {
+    font-size: 32px;
+    color: #b3006b;
+    margin: 0 0 10px;
+    text-shadow: 2px 2px 0 gold;
+    text-align: left;
+  }
+  .owner-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background: #7a0038;
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 3px dotted gold;
+    margin: 0 0 16px;
+    transform: rotate(-1deg);
+  }
+  .owner-info p { font-size: 17px; line-height: 1.6; }
+  .owner-stats { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+  .owner-stat {
+    background: #7a0038;
+    color: gold;
+    border: 3px solid gold;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+  }
+  .owner-stat b { display: block; font-size: 22px; color: #fff200; }
+  .owner-stat small { display: block; font-size: 10px; color: #ffd9ee; font-weight: normal; }
+
   /* ===== FOOTER ===== */
   footer {
     background: #7a0038;
@@ -343,6 +404,7 @@
   <a href="#testimonials">Testimonials</a>
   <a href="#pricing">Pricing</a>
   <a href="#roadmap">World Domination Roadmap</a>
+  <a href="#owner">About the Owner</a>
   <a href="#faq">FAQ</a>
 </nav>
 
@@ -494,6 +556,38 @@
     <div class="feature-card">
       <h3>Baroness Whiskerton</h3>
       <p><b>Chief Financial Hamster.</b> Keeps the books balanced by hoarding all profits in her cheeks. We are legally unable to confirm where the money actually is.</p>
+    </div>
+  </div>
+</section>
+
+<section id="owner">
+  <h2>👑 About the Owner 👑</h2>
+  <div class="owner-card">
+    <img
+      src="images/devin.jpg"
+      alt="Devin, Founder and CEO of Hamster Portal"
+      onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23ffd23f%22/><text y=%22.9em%22 font-size=%2290%22>🐹</text></svg>'"
+    >
+    <div class="owner-info">
+      <h3>Devin "The Cheek" McFluffington</h3>
+      <p class="owner-title">Founder · CEO · Chief Cheek Officer · Sole Human Employee</p>
+      <p>
+        Devin founded Hamster Portal in his parents' basement after a hamster looked at him
+        with what he describes as "financial confidence." Within 48 hours he had incorporated
+        the company in 14 countries, none of which he can currently name.
+      </p>
+      <p>
+        Today, Devin oversees a global workforce of 2.4 billion hamsters, none of whom he has
+        ever actually paid. He is wanted for questioning in 3 jurisdictions and celebrated in
+        4 others. He has never once been audited, because auditors cannot fit through the
+        tunnel entrance.
+      </p>
+      <div class="owner-stats">
+        <div class="owner-stat"><b>1</b>Human Employee</div>
+        <div class="owner-stat"><b>2.4B</b>Hamster Staff</div>
+        <div class="owner-stat"><b>14</b>Countries (unnamed)</div>
+        <div class="owner-stat"><b>0</b>Audits Survived<br><small>none attempted</small></div>
+      </div>
     </div>
   </div>
 </section>
