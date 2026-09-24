@@ -114,6 +114,7 @@
     box-shadow: 0 8px 0 #b3006b;
     text-decoration: none;
     margin: 10px;
+    font-family: inherit;
   }
   .cta-btn:active { transform: translateY(6px); box-shadow: 0 2px 0 #b3006b; }
 
@@ -206,9 +207,7 @@
     justify-content: space-around;
     text-align: center;
   }
-  .stat {
-    margin: 10px;
-  }
+  .stat { margin: 10px; }
   .stat .num {
     font-size: 50px;
     color: gold;
@@ -374,6 +373,224 @@
     content: "🐹 🐹 🐹 🐹 🐹 🐹 🐹 🐹 🐹";
     font-size: 24px;
   }
+
+  /* ============================================================
+     SIGNUP MODAL
+     ============================================================ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(43, 20, 0, 0.82);
+    backdrop-filter: blur(3px);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px 16px;
+    z-index: 9999;
+    overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    margin: auto;
+    background: #fffbe0;
+    border: 8px double #b3006b;
+    border-radius: 24px;
+    box-shadow: 0 0 60px rgba(255, 242, 0, 0.85), 0 0 0 6px gold;
+    padding: 28px 26px 30px;
+    animation: modalPop 0.28s cubic-bezier(.2,.9,.3,1.3);
+  }
+  @keyframes modalPop {
+    from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+    to   { transform: scale(1) rotate(0); opacity: 1; }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 4px solid gold;
+    background: #7a0038;
+    color: gold;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1;
+    box-shadow: 0 4px 0 #b3006b;
+  }
+  .modal-close:hover { background: gold; color: #7a0038; }
+
+  .modal-title {
+    text-align: center;
+    font-size: 30px;
+    color: #b3006b;
+    text-shadow: 3px 3px 0 gold;
+    margin: 0 0 6px;
+    animation: wiggle 1.6s infinite;
+  }
+  .modal-sub {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #7a0038;
+    margin: 0 0 18px;
+  }
+
+  .modal-warning {
+    background: #ff2d2d;
+    color: #fff;
+    border: 5px dashed #fff200;
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 22px;
+    text-shadow: 1px 1px 0 #000;
+    animation: blinker 1.6s linear infinite;
+  }
+  .modal-warning small {
+    display: block;
+    font-size: 12.5px;
+    font-weight: bold;
+    margin-top: 6px;
+    color: #fff9c4;
+  }
+
+  .modal-photos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .modal-photos figure {
+    margin: 0;
+    text-align: center;
+  }
+  .modal-photos img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid gold;
+    box-shadow: 0 0 20px rgba(179,0,107,0.65);
+    display: block;
+    background: #ffd23f;
+  }
+  .modal-photos figure:first-child img { transform: rotate(-6deg); border-color: #ff6fb5; }
+  .modal-photos figure:last-child img  { transform: rotate(6deg); border-color: #7fffb0; }
+  .modal-photos figcaption {
+    margin-top: 8px;
+    font-size: 12.5px;
+    font-weight: bold;
+    color: #7a0038;
+  }
+
+  .modal-form .field {
+    margin-bottom: 16px;
+  }
+  .modal-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #7a0038;
+    margin-bottom: 6px;
+  }
+  .modal-form label small {
+    font-weight: normal;
+    color: #b3006b;
+    font-style: italic;
+  }
+  .modal-form input,
+  .modal-form select {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 16px;
+    color: #2b1400;
+    background: #fff;
+    border: 3px solid #b3006b;
+    border-radius: 12px;
+    outline: none;
+  }
+  .modal-form input:focus,
+  .modal-form select:focus {
+    border-color: gold;
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.5);
+  }
+  .modal-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 520px) {
+    .modal-row { grid-template-columns: 1fr; }
+    .modal-title { font-size: 22px; }
+    .modal-photos img { width: 110px; height: 110px; }
+  }
+
+  .modal-submit {
+    width: 100%;
+    margin-top: 10px;
+    background: linear-gradient(180deg, #7fffb0, #00c46a);
+    border: 4px outset #ff6fb5;
+    border-radius: 40px;
+    padding: 16px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #003f1a;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #007a3d;
+    font-family: inherit;
+  }
+  .modal-submit:active { transform: translateY(6px); box-shadow: 0 2px 0 #007a3d; }
+
+  .modal-result {
+    display: none;
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .modal-result.show { display: block; }
+  .modal-result.processing {
+    background: #fff7cc;
+    border: 4px dashed #ffb300;
+    color: #7a0038;
+  }
+  .modal-result.done {
+    background: #e6ffe9;
+    border: 4px solid #00c46a;
+    color: #003f1a;
+  }
+  .modal-result .spin {
+    display: inline-block;
+    font-size: 32px;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .modal-fineprint {
+    margin-top: 18px;
+    font-size: 11.5px;
+    text-align: center;
+    color: #b3006b;
+    line-height: 1.5;
+    font-weight: bold;
+  }
 </style>
 </head>
 <body>
@@ -393,8 +610,8 @@
   <p style="color:white; font-size:20px; max-width:700px; margin:15px auto; text-shadow:2px 2px black;">
     The world's most secure, most adorable, and most inevitable payment platform — built entirely by hamsters, for humans who trust hamsters with their entire financial future.
   </p>
-  <a href="#signup" class="cta-btn">🐹 OPEN A HAMSTER ACCOUNT NOW 🐹</a>
-  <a href="#signup" class="cta-btn" style="background:linear-gradient(180deg,#7fffb0,#00c46a);">💸 SEND HAMSTER CASH 💸</a>
+  <a href="#signup" class="cta-btn" onclick="openModal(event)">🐹 OPEN A HAMSTER ACCOUNT NOW 🐹</a>
+  <a href="#signup" class="cta-btn" style="background:linear-gradient(180deg,#7fffb0,#00c46a);" onclick="openModal(event)">💸 SEND HAMSTER CASH 💸</a>
 </header>
 
 <nav>
@@ -666,7 +883,7 @@
 <section id="signup" style="text-align:center;">
   <h2>🐹 Ready to Hand Your Financial Future to a Hamster? 🐹</h2>
   <p style="font-size:18px;">Join millions of "satisfied customers" today. Offer not valid anywhere, because this is not a real thing.</p>
-  <a href="#" class="cta-btn">🐹 SIGN UP NOW (JK, THIS BUTTON DOES NOTHING) 🐹</a>
+  <a href="#signup" class="cta-btn" onclick="openModal(event)">🐹 SIGN UP NOW 🐹</a>
 </section>
 
 <footer>
@@ -677,6 +894,159 @@
   </p>
   <p>Made with 🧀, 🌻 seeds, and questionable web design choices.</p>
 </footer>
+
+<!-- ============================================================
+     SIGNUP MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <button class="modal-close" type="button" onclick="closeModal()" aria-label="Close">✕</button>
+
+    <h2 class="modal-title" id="modalTitle">🐹 HAMSTER PORTAL™ ONBOARDING 🐹</h2>
+    <p class="modal-sub">Official Account Registration Form (Extremely Real)</p>
+
+    <div class="modal-warning">
+      ⚠️ ONLY ENTER REAL INFORMATION ⚠️
+      <small></small>
+    </div>
+
+    <div class="modal-photos">
+      <figure>
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Cricetus_cricetus_01.jpg?width=300"
+          alt="A hamster, our Chief Verification Officer"
+        >
+        <figcaption>Your Hamster Verifier</figcaption>
+      </figure>
+      <figure>
+        <img
+          src="images/devin.jpg"
+          alt="Devin, Founder and CEO of Hamster Portal"
+          onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23ffd23f%22/><text y=%22.9em%22 font-size=%2290%22>🐹</text></svg>'"
+        >
+        <figcaption>Devin, Founder &amp; CEO</figcaption>
+      </figure>
+    </div>
+
+    <form class="modal-form" id="signupForm" autocomplete="off" onsubmit="submitForm(event)">
+
+      <div class="field">
+        <label for="fullName">Full Legal Name <small>(as it appears on your hamster license)</small></label>
+        <input type="text" id="fullName" placeholder="Mickey Mouse" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="ssn">Social Security Number <small>(we promise not to look)</small></label>
+        <input type="text" id="ssn" placeholder="000-00-0000" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone Number <small>(for hamster-related emergencies)</small></label>
+        <input type="tel" id="phone" placeholder="(555) 000-0000" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="dob">Date of Birth <small>(must be old enough to legally own a hamster)</small></label>
+        <input type="text" id="dob" placeholder="01 / 01 / 1900" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="maiden">Mother's Maiden Name <small>(the hamster is very curious)</small></label>
+        <input type="text" id="maiden" placeholder="Fluffington" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="card">Credit Card Number <small>(please do not)</small></label>
+        <input type="text" id="card" placeholder="0000 0000 0000 0000" inputmode="numeric" autocomplete="off">
+      </div>
+
+      <div class="modal-row">
+        <div class="field">
+          <label for="exp">Expiry <small>(of the seeds)</small></label>
+          <input type="text" id="exp" placeholder="12 / 99" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="cvv">CVV <small>— Cheek Verification Value</small></label>
+          <input type="text" id="cvv" placeholder="•••" autocomplete="off">
+        </div>
+      </div>
+
+      <button type="submit" class="modal-submit">🐹 SUBMIT TO THE HAMSTERS 🐹</button>
+
+      <div class="modal-result" id="modalResult"></div>
+
+      <p class="modal-fineprint">
+        By submitting, you agree to the Terms of Cheeks, the Burrow Privacy Policy, and to being
+        lightly nibbled during onboarding.
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+  /* ===== MODAL OPEN / CLOSE ===== */
+  var modal = document.getElementById("signupModal");
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    // reset any previous result
+    var r = document.getElementById("modalResult");
+    r.className = "modal-result";
+    r.innerHTML = "";
+    // focus the first field for convenience
+    setTimeout(function () {
+      var first = document.getElementById("fullName");
+      if (first) first.focus();
+    }, 100);
+  }
+
+  function closeModal() {
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  // click outside the card to close
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  // ESC to close
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+  });
+
+  /* ===== FAKE SUBMIT ===== */
+  var JOKES = [
+    "Your identity has been successfully stored in a hamster's left cheek. He has already forgotten it.",
+    "Application received. Devin personally reviewed it and said, and we quote, \"squeak.\"",
+    "Congratulations! You are now the proud owner of 0.0004 of a hamster. Welcome to the burrow.",
+    "Your credit card has been converted into 14 sunflower seeds. They have been eaten. Thank you.",
+    "Approved. Your mother's maiden name has been engraved on a tiny golden wheel somewhere underground.",
+    "Form processed in 0.3 seconds. The hamster responsible has been given a blueberry and a nap."
+  ];
+
+  function submitForm(e) {
+    e.preventDefault();
+
+    var result = document.getElementById("modalResult");
+    result.className = "modal-result processing show";
+    result.innerHTML = '<span class="spin">🐹</span><br>Processing… a hamster is running very fast in a wheel for you.';
+
+    var delay = 1800 + Math.random() * 1200;
+
+    setTimeout(function () {
+      var joke = JOKES[Math.floor(Math.random() * JOKES.length)];
+      result.className = "modal-result done show";
+      result.innerHTML =
+        "✅ <b>" + joke + "</b><br>" +
+        "<small style='display:block;margin-top:8px;font-weight:bold;'>" +
+        "" +
+        "</small>";
+    }, delay);
+  }
+</script>
 
 </body>
 </html>
