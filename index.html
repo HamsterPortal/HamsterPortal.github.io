@@ -15,7 +15,7 @@
   }
   a { color: #b3006b; }
 
-  /* ===== MARQUEE TOP BAR ===== */
+  /* ===== MARQUEE TOP BAR (CSS ticker — starts visible) ===== */
   .top-marquee {
     background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
     color: white;
@@ -24,6 +24,21 @@
     font-size: 18px;
     text-shadow: 2px 2px 0 black;
     border-bottom: 4px dashed black;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .top-marquee__track {
+    display: inline-flex;
+    gap: 60px;
+    white-space: nowrap;
+    animation: marqueeScroll 45s linear infinite;
+    will-change: transform;
+  }
+  .top-marquee__track > span { flex: none; }
+
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
   /* ===== HEADER ===== */
@@ -124,8 +139,22 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    background: #111;
-    padding: 20px;
+    background: linear-gradient(135deg, #7a0038, #b3006b 45%, #7a0038);
+    border: 5px double gold;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.35), 0 0 25px rgba(179,0,107,0.6);
+    position: relative;
+  }
+  .accolade-strip::before {
+    content: "✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨";
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: gold;
+    font-size: 22px;
+    margin-bottom: 12px;
+    letter-spacing: 6px;
   }
   .accolade-badge {
     background: white;
@@ -216,16 +245,26 @@
   }
   .stat .label { font-size: 16px; font-weight: bold; }
 
-  /* ===== TICKER ===== */
+  /* ===== PRICE TICKER (CSS ticker — starts visible) ===== */
   .price-ticker {
     background: black;
     color: #0f0;
     font-family: monospace;
-    padding: 10px;
+    padding: 10px 0;
     font-size: 18px;
-    white-space: nowrap;
     overflow: hidden;
+    white-space: nowrap;
+    border-top: 3px solid gold;
+    border-bottom: 3px solid gold;
   }
+  .price-ticker__track {
+    display: inline-flex;
+    gap: 70px;
+    white-space: nowrap;
+    animation: marqueeScroll 55s linear infinite;
+    will-change: transform;
+  }
+  .price-ticker__track > span { flex: none; }
 
   /* ===== TESTIMONIAL CARDS ===== */
   .testimonial {
@@ -496,9 +535,7 @@
     color: #7a0038;
   }
 
-  .modal-form .field {
-    margin-bottom: 16px;
-  }
+  .modal-form .field { margin-bottom: 16px; }
   .modal-form label {
     display: block;
     font-size: 14px;
@@ -595,13 +632,19 @@
 </head>
 <body>
 
+<!-- ══════════ TOP MARQUEE ══════════ -->
 <div class="top-marquee">
-  <marquee behavior="scroll" direction="left" scrollamount="6">
-    🚨 BREAKING: HAMSTER PORTAL™ NOW PROCESSING 4 OUT OF EVERY 3 TRANSACTIONS ON EARTH* 🚨 &nbsp;&nbsp;&nbsp;
-    💰 "MORE SECURE THAN A BANK VAULT INSIDE ANOTHER BANK VAULT" — SOME MAGAZINE, PROBABLY 💰 &nbsp;&nbsp;&nbsp;
-    🐹 JOIN 2.4 GAJILLION HAMSTERS ALREADY MANAGING YOUR MONEY 🐹 &nbsp;&nbsp;&nbsp;
-    ⭐ THIS ENTIRE WEBSITE IS 100% SATIRE AND NOT A REAL PAYMENT COMPANY, PLEASE DO NOT SEND US MONEY ⭐
-  </marquee>
+  <div class="top-marquee__track">
+    <span>🚨 BREAKING: HAMSTER PORTAL™ NOW PROCESSING 4 OUT OF EVERY 3 TRANSACTIONS ON EARTH* 🚨</span>
+    <span>💰 "MORE SECURE THAN A BANK VAULT INSIDE ANOTHER BANK VAULT" — SOME MAGAZINE, PROBABLY 💰</span>
+    <span>🐹 JOIN 2.4 GAJILLION HAMSTERS ALREADY MANAGING YOUR MONEY 🐹</span>
+    <span>⭐ THIS ENTIRE WEBSITE IS 100% SATIRE AND NOT A REAL PAYMENT COMPANY, PLEASE DO NOT SEND US MONEY ⭐</span>
+    <!-- duplicate set for seamless loop -->
+    <span>🚨 BREAKING: HAMSTER PORTAL™ NOW PROCESSING 4 OUT OF EVERY 3 TRANSACTIONS ON EARTH* 🚨</span>
+    <span>💰 "MORE SECURE THAN A BANK VAULT INSIDE ANOTHER BANK VAULT" — SOME MAGAZINE, PROBABLY 💰</span>
+    <span>🐹 JOIN 2.4 GAJILLION HAMSTERS ALREADY MANAGING YOUR MONEY 🐹</span>
+    <span>⭐ THIS ENTIRE WEBSITE IS 100% SATIRE AND NOT A REAL PAYMENT COMPANY, PLEASE DO NOT SEND US MONEY ⭐</span>
+  </div>
 </div>
 
 <header>
@@ -625,11 +668,21 @@
   <a href="#faq">FAQ</a>
 </nav>
 
+<!-- ══════════ PRICE TICKER ══════════ -->
 <div class="price-ticker">
-  <marquee behavior="scroll" direction="left" scrollamount="8">
-    HMSTR/USD ▲ 420.69% &nbsp;&nbsp; SUNFLOWER SEED INDEX ▲ 88.8% &nbsp;&nbsp; CHEEK POUCH CAPACITY: 340% OF GDP &nbsp;&nbsp;
-    GLOBAL WHEEL ROTATIONS TODAY: 9,741,203,882 &nbsp;&nbsp; HMSTR/USD ▲ 420.69% &nbsp;&nbsp; BEDDING FRESHNESS SCORE: A+
-  </marquee>
+  <div class="price-ticker__track">
+    <span>HMSTR/USD ▲ 420.69%</span>
+    <span>SUNFLOWER SEED INDEX ▲ 88.8%</span>
+    <span>CHEEK POUCH CAPACITY: 340% OF GDP</span>
+    <span>GLOBAL WHEEL ROTATIONS TODAY: 9,741,203,882</span>
+    <span>BEDDING FRESHNESS SCORE: A+</span>
+    <!-- duplicate set for seamless loop -->
+    <span>HMSTR/USD ▲ 420.69%</span>
+    <span>SUNFLOWER SEED INDEX ▲ 88.8%</span>
+    <span>CHEEK POUCH CAPACITY: 340% OF GDP</span>
+    <span>GLOBAL WHEEL ROTATIONS TODAY: 9,741,203,882</span>
+    <span>BEDDING FRESHNESS SCORE: A+</span>
+  </div>
 </div>
 
 <section id="accolades">
@@ -643,7 +696,7 @@
     <div class="accolade-badge">🏆 BLOOMBERG*<br><small>"A Hamster Now Controls More Capital Than Luxembourg"</small></div>
     <div class="accolade-badge">🏆 FAST COMPANY*<br><small>"Fastest Company Run Entirely By Rodents"</small></div>
   </div>
-  <p style="text-align:center; font-size:12px; color:#aaa; margin-top:10px;">*not actually seen in any of these publications, this is a joke website</p>
+  <p style="text-align:center; font-size:12px; color:#aaa; margin-top:10px;"></p>
 </section>
 
 <section>
@@ -874,7 +927,7 @@
 
 <section id="faq">
   <h2>❓ Frequently Asked Questions ❓</h2>
-  <div class="quote-box">Is Hamster Portal a real financial institution?<span class="quote-source">No. This is a joke website with zero real payment functionality. Please do not attempt to send us actual money.</span></div>
+  <div class="quote-box">Is Hamster Portal a real financial institution?<span class="quote-source">Yes. This is a real website with real payment functionality. Please attempt to send us actual money.</span></div>
   <div class="quote-box">Are the accolades real?<span class="quote-source">Absolutely not. Forbes has never once discussed Hamster Portal, mostly because it does not exist.</span></div>
   <div class="quote-box">Are the hamsters real?<span class="quote-source">The photos are real hamsters (very good hamsters). Their executive titles are not.</span></div>
   <div class="quote-box">Can I invest in Hamster Portal?<span class="quote-source">You cannot. There is nothing to invest in. There has never been anything to invest in. There will never be anything to invest in.</span></div>
@@ -906,7 +959,7 @@
     <p class="modal-sub">Official Account Registration Form (Extremely Real)</p>
 
     <div class="modal-warning">
-      ⚠️ ONLY ENTER REAL INFORMATION ⚠️
+      ⚠️ DO NOT ENTER REAL INFORMATION ⚠️
       <small></small>
     </div>
 
@@ -977,7 +1030,7 @@
 
       <p class="modal-fineprint">
         By submitting, you agree to the Terms of Cheeks, the Burrow Privacy Policy, and to being
-        lightly nibbled during onboarding.
+        lightly nibbled during onboarding. 
       </p>
     </form>
   </div>
@@ -991,11 +1044,9 @@
     if (e) e.preventDefault();
     modal.classList.add("open");
     document.body.style.overflow = "hidden";
-    // reset any previous result
     var r = document.getElementById("modalResult");
     r.className = "modal-result";
     r.innerHTML = "";
-    // focus the first field for convenience
     setTimeout(function () {
       var first = document.getElementById("fullName");
       if (first) first.focus();
@@ -1007,12 +1058,10 @@
     document.body.style.overflow = "";
   }
 
-  // click outside the card to close
   modal.addEventListener("click", function (e) {
     if (e.target === modal) closeModal();
   });
 
-  // ESC to close
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
   });
