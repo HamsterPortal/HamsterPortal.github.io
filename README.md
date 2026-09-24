@@ -6,6 +6,10 @@
 <title>The Hamster Portal — The World's Most Secure Payment Platform</title>
 <meta name="description" content="A parody website. Hamster Portal is a fake payment platform run entirely by hamsters. Do not enter real card details.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐹</text></svg>">
+
+<!-- ═══════════════════════════════════════════════════════
+     STYLESHEET 1 of 2 — the design system
+     ═══════════════════════════════════════════════════════ -->
 <style>
   :root{
     --fur:#e8b06a;
@@ -19,6 +23,10 @@
     --muted:#8a7466;
     --line:#efdfc9;
     --radius:18px;
+
+    /* ★ THE ONLY WIDTH KNOB THAT MATTERS ★
+       Change this one number and the whole site follows. */
+    --maxw: 1320px;
   }
 
   *{box-sizing:border-box}
@@ -35,10 +43,15 @@
   }
 
   h1,h2,h3{line-height:1.15;margin:0 0 .5em;letter-spacing:-.02em}
-
   a{color:inherit}
 
-  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  .wrap{
+    width:100%;
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 22px;
+  }
+  .wrap--narrow{max-width:780px}
 
   /* ---------- TICKER ---------- */
   .ticker{
@@ -294,6 +307,7 @@
   .foot__grid ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
   .foot__grid a{text-decoration:none}
   .foot__grid a:hover{text-decoration:underline}
+  .foot__grid p{max-width:34ch}
   .disclaimer{
     border-top:1px solid rgba(255,233,201,.15);
     padding-top:26px;font-size:12.5px;line-height:1.7;color:#a58a70;
@@ -326,6 +340,85 @@
   }
   .seed-counter b{color:var(--orange);font-variant-numeric:tabular-nums}
   .hamster{width:100%;height:100%;display:block}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     STYLESHEET 2 of 2 — HOST-OVERRIDE LAYER
+     ▸ Keep this LAST inside <head>.
+     ▸ Purpose: forcibly ignore every max-width / centering / padding
+       that GitHub, a Jekyll theme, a CSS framework, or any wrapper
+       tries to impose on this page. This file follows only its own
+       rules from here on.
+     ▸ If you ever want to widen/narrow the site, change --maxw in the
+       :root block at the top. Nothing else matters.
+     ═══════════════════════════════════════════════════════════════════ -->
+<style id="host-override">
+  /* 1 · The document itself refuses to be boxed in */
+  html, body {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2 · Nothing inside the page may carry an inherited width cap */
+  body * {
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+
+  /* 3 · Neutralise every known host wrapper
+         (GitHub blob view, Primer, Jekyll themes, Bootstrap-ish
+         containers, generic site wrappers, etc.) */
+  .markdown-body,
+  .container, .container-fluid, .container-lg, .container-xl,
+  .wrapper, .page-wrapper, .site-wrapper, .site-content,
+  .layout, .page-content, .content, .content-area, .entry-content,
+  .post, .post-content, .article, .article-body, .repository-content,
+  main, article,
+  #content, #main, #wrapper, #content-wrapper {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    position: static !important;
+  }
+
+  /* 4 · Restore the widths this design actually wants.
+         Class selectors out-specify the `body *` rule in step 2,
+         so these win the cascade. */
+  .wrap {
+    width: 100% !important;
+    max-width: var(--maxw, 1320px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+  .wrap--narrow { max-width: 780px !important; }
+  .sect-head    { max-width: 660px !important; margin-left: auto !important; margin-right: auto !important; }
+  .faq          { max-width: 760px !important; margin-left: auto !important; margin-right: auto !important; }
+  .bars         { max-width: 920px !important; margin-left: auto !important; margin-right: auto !important; }
+  .cookie       { max-width: 560px !important; margin-left: auto !important; margin-right: auto !important; }
+  .hero p.lead  { max-width: 62ch !important; }
+  footer .foot__grid p { max-width: 34ch !important; }
+
+  /* 5 · Kill host typography / colour bleed */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    color: #2b1b12 !important;
+    background: #fffaf2 !important;
+    -webkit-text-size-adjust: 100%;
+  }
 </style>
 </head>
 <body>
@@ -430,7 +523,7 @@
 
 <!-- ══════════ PAYMENT PORTAL ══════════ -->
 <section id="portal">
-  <div class="wrap" style="max-width:760px">
+  <div class="wrap wrap--narrow">
     <div class="sect-head">
       <p class="eyebrow">The Portal</p>
       <h2>Send a payment into the burrow</h2>
@@ -618,7 +711,7 @@
         <div class="logo" style="color:#ffe9c9;margin-bottom:12px">
           <span class="mark" id="logoMark2"></span> The Hamster Portal
         </div>
-        <p style="margin:0;max-width:34ch">
+        <p style="margin:0">
           The world's most secure payment platform. Operated by hamsters.
           Regulated by nobody. Loved by all.
         </p>
@@ -685,6 +778,38 @@
 <script>
 (function () {
   "use strict";
+
+  /* ═══════════════════════════════════════════════════════
+     0. HOST-OVERRIDE FAILSAFE
+     Re-asserts the override sheet after every possible moment
+     a host could inject its own CSS, and strips any inline
+     width cap that might have been slapped onto <html>/<body>.
+     ═══════════════════════════════════════════════════════ */
+  (function hostOverrideFailsafe() {
+    var sheet = document.getElementById("host-override");
+
+    function enforce() {
+      // Move our override sheet to the very END of <head> so it
+      // always wins on source order as well as on !important.
+      if (sheet && sheet.parentNode) {
+        sheet.parentNode.appendChild(sheet);
+      }
+      // Strip inline width constraints from the document roots.
+      [document.documentElement, document.body].forEach(function (el) {
+        if (!el || !el.style) return;
+        el.style.removeProperty("max-width");
+        el.style.removeProperty("width");
+        el.style.removeProperty("margin");
+        el.style.removeProperty("padding");
+      });
+    }
+
+    enforce();
+    document.addEventListener("DOMContentLoaded", enforce);
+    window.addEventListener("load", enforce);
+    setTimeout(enforce, 400);
+    setTimeout(enforce, 1500);
+  })();
 
   /* ═══════════════════════════════════════
      1. HAMSTER ILLUSTRATION FACTORY
