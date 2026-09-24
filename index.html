@@ -15,6 +15,56 @@
   }
   a { color: #b3006b; }
 
+  /* ===== AUDIO BUTTON (fixed top-right) ===== */
+  .audio-btn {
+    position: fixed;
+    top: 60px;
+    right: 16px;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: linear-gradient(180deg, #fff200, #ffb300);
+    border: 4px outset #ff6fb5;
+    border-radius: 40px;
+    color: #7a0038;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #b3006b, 0 0 22px rgba(255,242,0,0.7);
+    animation: wiggle 2s infinite;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .audio-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #b3006b, 0 0 22px rgba(255,242,0,0.7);
+  }
+  .audio-btn.playing {
+    background: linear-gradient(180deg, #7fffb0, #00c46a);
+    border-color: #fff200;
+    box-shadow: 0 6px 0 #007a3d, 0 0 26px rgba(127,255,176,0.85);
+    animation: none;
+  }
+  .audio-btn.playing:active {
+    box-shadow: 0 2px 0 #007a3d, 0 0 26px rgba(127,255,176,0.85);
+  }
+  .audio-btn.error {
+    background: linear-gradient(180deg, #ff8a8a, #d60000);
+    color: #fff;
+    border-color: #fff200;
+    animation: none;
+  }
+  .audio-btn__icon { font-size: 22px; line-height: 1; }
+  .audio-btn__label { white-space: nowrap; }
+
+  @media (max-width: 560px) {
+    .audio-btn { top: 54px; right: 10px; padding: 8px 12px; font-size: 14px; }
+    .audio-btn__label { display: none; }
+    .audio-btn__icon { font-size: 20px; }
+  }
+
   /* ===== MARQUEE TOP BAR (CSS ticker — starts visible) ===== */
   .top-marquee {
     background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
@@ -632,6 +682,13 @@
 </head>
 <body>
 
+<!-- ══════════ AUDIO BUTTON (fixed top-right) ══════════ -->
+<audio id="bgAudio" src="audio/sound.mp3" loop preload="auto"></audio>
+<button class="audio-btn" id="audioBtn" type="button" onclick="toggleAudio()" aria-label="Play background audio">
+  <span class="audio-btn__icon" id="audioIcon">🔇</span>
+  <span class="audio-btn__label" id="audioLabel">Play</span>
+</button>
+
 <!-- ══════════ TOP MARQUEE ══════════ -->
 <div class="top-marquee">
   <div class="top-marquee__track">
@@ -639,7 +696,6 @@
     <span>💰 "MORE SECURE THAN A BANK VAULT INSIDE ANOTHER BANK VAULT" — SOME MAGAZINE, PROBABLY 💰</span>
     <span>🐹 JOIN 2.4 GAJILLION HAMSTERS ALREADY MANAGING YOUR MONEY 🐹</span>
     <span>⭐ THIS ENTIRE WEBSITE IS 100% SATIRE AND NOT A REAL PAYMENT COMPANY, PLEASE DO NOT SEND US MONEY ⭐</span>
-    <!-- duplicate set for seamless loop -->
     <span>🚨 BREAKING: HAMSTER PORTAL™ NOW PROCESSING 4 OUT OF EVERY 3 TRANSACTIONS ON EARTH* 🚨</span>
     <span>💰 "MORE SECURE THAN A BANK VAULT INSIDE ANOTHER BANK VAULT" — SOME MAGAZINE, PROBABLY 💰</span>
     <span>🐹 JOIN 2.4 GAJILLION HAMSTERS ALREADY MANAGING YOUR MONEY 🐹</span>
@@ -676,7 +732,6 @@
     <span>CHEEK POUCH CAPACITY: 340% OF GDP</span>
     <span>GLOBAL WHEEL ROTATIONS TODAY: 9,741,203,882</span>
     <span>BEDDING FRESHNESS SCORE: A+</span>
-    <!-- duplicate set for seamless loop -->
     <span>HMSTR/USD ▲ 420.69%</span>
     <span>SUNFLOWER SEED INDEX ▲ 88.8%</span>
     <span>CHEEK POUCH CAPACITY: 340% OF GDP</span>
@@ -696,7 +751,7 @@
     <div class="accolade-badge">🏆 BLOOMBERG*<br><small>"A Hamster Now Controls More Capital Than Luxembourg"</small></div>
     <div class="accolade-badge">🏆 FAST COMPANY*<br><small>"Fastest Company Run Entirely By Rodents"</small></div>
   </div>
-  <p style="text-align:center; font-size:12px; color:#aaa; margin-top:10px;"></p>
+  <p style="text-align:center; font-size:12px; color:#aaa; margin-top:10px;">*not actually seen in any of these publications, this is a joke website</p>
 </section>
 
 <section>
@@ -927,7 +982,7 @@
 
 <section id="faq">
   <h2>❓ Frequently Asked Questions ❓</h2>
-  <div class="quote-box">Is Hamster Portal a real financial institution?<span class="quote-source">Yes. This is a real website with real payment functionality. Please attempt to send us actual money.</span></div>
+  <div class="quote-box">Is Hamster Portal a real financial institution?<span class="quote-source">No. This is a joke website with zero real payment functionality. Please do not attempt to send us actual money.</span></div>
   <div class="quote-box">Are the accolades real?<span class="quote-source">Absolutely not. Forbes has never once discussed Hamster Portal, mostly because it does not exist.</span></div>
   <div class="quote-box">Are the hamsters real?<span class="quote-source">The photos are real hamsters (very good hamsters). Their executive titles are not.</span></div>
   <div class="quote-box">Can I invest in Hamster Portal?<span class="quote-source">You cannot. There is nothing to invest in. There has never been anything to invest in. There will never be anything to invest in.</span></div>
@@ -959,8 +1014,8 @@
     <p class="modal-sub">Official Account Registration Form (Extremely Real)</p>
 
     <div class="modal-warning">
-      ⚠️ ENTER REAL INFORMATION ONLY ⚠️
-      <small></small>
+      ⚠️ DO NOT ENTER REAL INFORMATION ⚠️
+      <small>This is a parody website. This form does not submit anywhere. Nothing is stored, sent, or saved. Please use obviously fake details — we recommend "Mickey Mouse" and "0000 0000 0000 0000".</small>
     </div>
 
     <div class="modal-photos">
@@ -1030,14 +1085,67 @@
 
       <p class="modal-fineprint">
         By submitting, you agree to the Terms of Cheeks, the Burrow Privacy Policy, and to being
-        lightly nibbled during onboarding. 
+        lightly nibbled during onboarding. Reminder: this is a parody. Nothing happens. Nothing is sent.
+        Nothing is stored. Your fake data is safe with the fake hamsters.
       </p>
     </form>
   </div>
 </div>
 
 <script>
-  /* ===== MODAL OPEN / CLOSE ===== */
+  /* ============================================================
+     AUDIO TOGGLE
+     ============================================================ */
+  var bgAudio   = document.getElementById("bgAudio");
+  var audioBtn  = document.getElementById("audioBtn");
+  var audioIcon = document.getElementById("audioIcon");
+  var audioLabel= document.getElementById("audioLabel");
+
+  function setAudioErrorState() {
+    audioBtn.classList.remove("playing");
+    audioBtn.classList.add("error");
+    audioIcon.textContent = "⚠️";
+    audioLabel.textContent = "No audio";
+  }
+
+  function toggleAudio() {
+    // Clear error state on a fresh attempt
+    audioBtn.classList.remove("error");
+
+    if (bgAudio.paused) {
+      var p = bgAudio.play();
+      if (p && typeof p.then === "function") {
+        p.then(function () {
+          audioIcon.textContent = "🔊";
+          audioLabel.textContent = "Pause";
+          audioBtn.classList.add("playing");
+        }).catch(function (err) {
+          console.warn("Audio could not play:", err);
+          setAudioErrorState();
+        });
+      } else {
+        // Older browsers without a play() promise
+        audioIcon.textContent = "🔊";
+        audioLabel.textContent = "Pause";
+        audioBtn.classList.add("playing");
+      }
+    } else {
+      bgAudio.pause();
+      audioIcon.textContent = "🔇";
+      audioLabel.textContent = "Play";
+      audioBtn.classList.remove("playing");
+    }
+  }
+
+  // If the file is missing or fails to load, show an error state on the button
+  bgAudio.addEventListener("error", function () {
+    console.warn("audio/sound.mp3 could not be loaded.");
+    setAudioErrorState();
+  });
+
+  /* ============================================================
+     SIGNUP MODAL
+     ============================================================ */
   var modal = document.getElementById("signupModal");
 
   function openModal(e) {
@@ -1066,7 +1174,9 @@
     if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
   });
 
-  /* ===== FAKE SUBMIT ===== */
+  /* ============================================================
+     FAKE SUBMIT
+     ============================================================ */
   var JOKES = [
     "Your identity has been successfully stored in a hamster's left cheek. He has already forgotten it.",
     "Application received. Devin personally reviewed it and said, and we quote, \"squeak.\"",
@@ -1091,7 +1201,7 @@
       result.innerHTML =
         "✅ <b>" + joke + "</b><br>" +
         "<small style='display:block;margin-top:8px;font-weight:bold;'>" +
-        "" +
+        "Reminder: this is a parody. Nothing was sent. Nothing was stored. Please do not enter real information." +
         "</small>";
     }, delay);
   }
